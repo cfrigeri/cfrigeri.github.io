@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import FormContacto from '../components/FormContacto.astro';
+import { SITIO } from '../config/sitio';
+---
+
+<Base titulo="Escribime" descripcion="Contale a Claudio Frigeri en qué andás: un sistema que no escala, una integración pendiente o una idea con IA.">
+  <section class="cabecera">
+    <div class="marco">
+      <h1>Contame en qué andás.</h1>
+      <p>
+        Un sistema que no escala, una integración pendiente, una idea con IA que no sabés por dónde empezar o un tema para un
+        próximo artículo. Leo todos los mensajes y respondo yo.
+      </p>
+    </div>
+  </section>
+  <section class="seccion pt-5">
+    <div class="marco dos-columnas">
+      <FormContacto />
+      <div>
+        <h2 class="h4">Si preferís otro canal</h2>
+        <ul class="list-unstyled fs-5 mt-3 d-grid gap-2">
+          <li>Email: <a class="enlace" href={`mailto:${SITIO.enlaces.email}`}>{SITIO.enlaces.email}</a></li>
+          <li><a class="enlace" href={SITIO.enlaces.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+          <li><a class="enlace" href={SITIO.enlaces.github} rel="me noopener" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

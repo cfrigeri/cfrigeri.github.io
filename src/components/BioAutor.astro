@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import foto from '../assets/claudio.jpg';
+---
+
+<aside class="bio" aria-label="Sobre el autor">
+  <Image src={foto} alt="" width={176} />
+  <div>
+    <p class="fw-semibold mb-1">Soy Claudio Frigeri</p>
+    <p class="mb-2 text-body-secondary">
+      Pasé 13 años en banca digital integrando sistemas que no pueden fallar. Si este tema te toca de cerca, contame cómo lo
+      están resolviendo.
+    </p>
+    <a class="enlace" href="/contacto">Escribime</a>
+  </div>
+</aside>

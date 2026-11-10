@@ -1,0 +1,40 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from './Base.astro';
+import Etiquetas from '../components/Etiquetas.astro';
+import BioAutor from '../components/BioAutor.astro';
+import EstadoArticulo from '../components/EstadoArticulo.astro';
+import { formatearFecha } from '../lib/fechas';
+import type { Articulo } from '../lib/articulos';
+
+interface Props {
+  articulo: Articulo;
+}
+const { articulo } = Astro.props;
+const { titulo, resumen, fecha, etiquetas, imagen } = articulo.data;
+const imagenOg = imagen ? (await getImage({ src: imagen, width: 1200, format: 'png' })).src : undefined;
+---
+
+<Base titulo={titulo} descripcion={resumen} imagen={imagenOg} tipo="article" fechaPublicacion={fecha}>
+  <article class="marco">
+    <header class="articulo-cabecera lectura">
+      <time datetime={fecha.toISOString()}>{formatearFecha(fecha)}</time>
+      <EstadoArticulo articulo={articulo} />
+      <h1>{titulo}</h1>
+      <Etiquetas etiquetas={etiquetas} />
+      {
+        imagen && (
+          <div class="portada">
+            <Image src={imagen} alt="" width={1200} loading="eager" />
+          </div>
+        )
+      }
+    </header>
+    <div class="contenido lectura">
+      <slot />
+    </div>
+    <div class="lectura">
+      <BioAutor />
+    </div>
+  </article>
+</Base>

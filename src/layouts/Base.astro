@@ -1,0 +1,74 @@
+---
+import '@fontsource-variable/archivo/standard.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '../styles/main.scss';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITIO } from '../config/sitio';
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  /** Ruta o URL de la imagen para compartir. Por defecto /og-default.png. */
+  imagen?: string;
+  tipo?: 'website' | 'article';
+  fechaPublicacion?: Date;
+}
+
+const { titulo, descripcion = SITIO.descripcion, imagen = '/og-default.png', tipo = 'website', fechaPublicacion } =
+  Astro.props;
+
+const tituloCompleto = titulo ? `${titulo} | ${SITIO.titulo}` : `${SITIO.titulo} | ${SITIO.lema}`;
+const canonica = new URL(Astro.url.pathname, SITIO.url).href;
+const imagenAbsoluta = new URL(imagen, SITIO.url).href;
+const conAnalitica = import.meta.env.PROD && SITIO.goatcounterCodigo !== '';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F6F4EE" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title={SITIO.titulo} href="/rss.xml" />
+
+    <meta property="og:title" content={titulo ?? SITIO.titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:type" content={tipo} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagenAbsoluta} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={SITIO.titulo} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {fechaPublicacion && <meta property="article:published_time" content={fechaPublicacion.toISOString()} />}
+    {SITIO.googleVerificacion && <meta name="google-site-verification" content={SITIO.googleVerificacion} />}
+
+    {
+      conAnalitica && (
+        <script
+          is:inline
+          data-goatcounter={`https://${SITIO.goatcounterCodigo}.goatcounter.com/count`}
+          async
+          src="//gc.zgo.at/count.js"
+        />
+      )
+    }
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-primary" href="#contenido">Saltar al contenido</a>
+    <Header />
+    <main id="contenido" class="flex-grow-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import 'bootstrap/js/dist/collapse';
+    </script>
+  </body>
+</html>

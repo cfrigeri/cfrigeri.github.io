@@ -1,0 +1,23 @@
+---
+import Etiquetas from './Etiquetas.astro';
+import EstadoArticulo from './EstadoArticulo.astro';
+import { formatearFecha } from '../lib/fechas';
+import type { Articulo } from '../lib/articulos';
+
+interface Props {
+  articulo: Articulo;
+  /** Nivel del título según dónde se use la tarjeta. */
+  nivel?: 'h2' | 'h3';
+}
+const { articulo, nivel = 'h2' } = Astro.props;
+const { titulo, resumen, fecha, etiquetas } = articulo.data;
+const Titulo = nivel;
+---
+
+<article class="tarjeta">
+  <time datetime={fecha.toISOString()}>{formatearFecha(fecha)}</time>
+  <EstadoArticulo articulo={articulo} />
+  <Titulo><a href={`/articulos/${articulo.id}`}>{titulo}</a></Titulo>
+  <p>{resumen}</p>
+  <Etiquetas etiquetas={etiquetas} />
+</article>

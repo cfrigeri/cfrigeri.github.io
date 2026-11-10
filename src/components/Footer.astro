@@ -1,0 +1,17 @@
+---
+import { SITIO } from '../config/sitio';
+
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie mt-auto">
+  <div class="marco d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 py-4">
+    <span>© {anio} {SITIO.autor.nombre}</span>
+    <ul class="list-inline mb-0">
+      <li class="list-inline-item me-4"><a href={`mailto:${SITIO.enlaces.email}`}>Email</a></li>
+      <li class="list-inline-item me-4"><a href={SITIO.enlaces.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li class="list-inline-item me-4"><a href={SITIO.enlaces.github} rel="me noopener" target="_blank">GitHub</a></li>
+      <li class="list-inline-item"><a href="/rss.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>

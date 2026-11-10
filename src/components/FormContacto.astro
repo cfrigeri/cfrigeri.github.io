@@ -1,0 +1,48 @@
+---
+import { SITIO } from '../config/sitio';
+
+const endpoint = `https://formspree.io/f/${SITIO.formspreeId}`;
+const habilitado = SITIO.formspreeId !== '';
+---
+
+{
+  habilitado && (
+    <div class="form-contacto">
+      <form method="POST" action={endpoint} novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input id="nombre" name="nombre" type="text" class="form-control" autocomplete="name" required />
+          <div class="invalid-feedback">Contame tu nombre.</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" name="email" type="email" class="form-control" autocomplete="email" required />
+          <div class="invalid-feedback">Necesito un email válido para responderte.</div>
+        </div>
+        <div class="mb-3">
+          <label for="mensaje" class="form-label">¿En qué andás?</label>
+          <textarea id="mensaje" name="mensaje" rows="6" class="form-control" placeholder="Un sistema que no escala, una integración pendiente, una idea con IA..." required />
+          <div class="invalid-feedback">Contame un poco en qué andás.</div>
+        </div>
+        <input type="text" name="_gotcha" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+      <div class="alert alert-success d-none" role="status" data-exito>
+        ¡Gracias! Te respondo a la brevedad.
+      </div>
+      <div class="alert alert-danger d-none mt-3" role="alert" data-error>
+        No se pudo enviar el mensaje. Probá de nuevo o escribime a
+        <a href={`mailto:${SITIO.enlaces.email}`}>{SITIO.enlaces.email}</a>.
+      </div>
+    </div>
+  )
+}
+
+<script>
+  import { enviarContacto } from '../lib/contacto';
+  import { conectarFormulario } from '../lib/form-contacto';
+
+  for (const contenedor of document.querySelectorAll<HTMLElement>('.form-contacto')) {
+    conectarFormulario(contenedor, (datos, endpoint) => enviarContacto(datos, endpoint));
+  }
+</script>

@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import foto from '../assets/claudio.jpg';
+
+const logros = [
+  'Lideré la modernización completa de la plataforma de homebanking, de una arquitectura legacy a una solución cloud.',
+  'Diseñé APIs que procesan millones de transacciones e integran al banco con importantes actores del ecosistema fintech.',
+  'Creé un framework interno de desarrollo que redujo el tiempo de salida al mercado y mejoró la calidad del código.',
+  'Lidero los canales electrónicos con un equipo multidisciplinario, sobre cloud, microservicios y arquitecturas escalables.',
+];
+
+const previas = [
+  { anios: '2009 – 2013', lugar: 'Consultora internacional de tecnología', detalle: 'Desarrollador técnico en sistemas de facturación interlineal para la industria aeronáutica.' },
+  { anios: '2008 – 2009', lugar: 'Consultora de sistemas', detalle: 'Especialista funcional: análisis y capacitación para una cadena internacional de retail.' },
+  { anios: '2007 – 2008', lugar: 'Integrador de sistemas multinacional', detalle: 'Especialista en QA del sistema de facturación de un operador de telecomunicaciones.' },
+  { anios: '2003 – 2007', lugar: 'Sector aeroportuario', detalle: 'Documentación técnica, relevamiento de infraestructura y certificación ISO 9001.' },
+];
+
+const certificaciones = [
+  'AI Fluency Framework & Foundations',
+  'Introduction to Model Context Protocol',
+  'Optimize Agent Behavior',
+  'Claude Code in Action',
+];
+---
+
+<Base
+  titulo="Sobre mí"
+  descripcion="Claudio Frigeri: 13 años integrando sistemas que no pueden fallar en banca digital. Hoy escribe sobre IA, integraciones y arquitectura."
+>
+  <section class="cabecera">
+    <div class="marco hero-grid">
+      <div>
+        <h1>Hola, soy Claudio.</h1>
+        <p>
+          Durante más de 13 años lideré la transformación digital de canales bancarios, un entorno donde los sistemas no pueden
+          fallar. Ahí aprendí a destrabar operaciones, integrar con terceros y modernizar sin frenar el negocio. Hoy aplico ese
+          rigor a llevar la IA a sistemas reales, en empresas de cualquier industria, y lo cuento en este sitio.
+        </p>
+      </div>
+      <div class="polaroid">
+        <figure>
+          <Image src={foto} alt="Claudio Frigeri" width={380} />
+          <figcaption>Buenos Aires, Argentina.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion pt-5">
+    <div class="marco">
+      <div class="lectura">
+        <h2 class="mb-3">Trayectoria</h2>
+        <h3 class="h4 mt-4 mb-1">Líder técnico en un importante banco argentino con fuerte presencia tecnológica</h3>
+        <p class="text-body-secondary">2013 – hoy</p>
+        <ul class="fs-5">
+          {logros.map((l) => <li class="mb-2">{l}</li>)}
+        </ul>
+
+        <h3 class="h5 mt-5 mb-2">Antes de eso</h3>
+        <ul class="historia">
+          {
+            previas.map(({ anios, lugar, detalle }) => (
+              <li>
+                <b>{anios}</b>
+                <div>
+                  <strong>{lugar}</strong>
+                  <span>{detalle}</span>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <h2 class="mt-5 mb-3">Formación</h2>
+        <p class="fs-5">Analista de sistemas (2006 – 2008)</p>
+
+        <h2 class="mt-5 mb-3">Certificaciones</h2>
+        <ul class="fs-5">
+          {certificaciones.map((c) => <li>{c}</li>)}
+        </ul>
+
+        <h2 class="mt-5 mb-3">De qué podemos hablar</h2>
+        <p class="fs-5">
+          Integraciones críticas y APIs, agentes de IA que destraban la operación, y arquitectura y refactor de sistemas
+          heredados. Si estás con algo de esto, <a class="enlace" href="/contacto">contame en qué andás</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

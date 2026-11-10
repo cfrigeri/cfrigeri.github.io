@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import TarjetaArticulo from '../../components/TarjetaArticulo.astro';
+import { obtenerPublicados } from '../../lib/articulos';
+
+const publicados = await obtenerPublicados();
+---
+
+<Base titulo="Artículos" descripcion="Artículos sobre integración de IA, APIs, arquitectura de software y flujos que se traban.">
+  <section class="cabecera">
+    <div class="marco">
+      <h1>Lo que voy escribiendo</h1>
+      <p>Integraciones, agentes de IA y arquitectura: lo que funciona, lo que no y por qué. Un artículo nuevo cada semana.</p>
+    </div>
+  </section>
+  <div class="marco">
+    <div class="lectura pb-5 mb-4">
+      {publicados.map((articulo) => <TarjetaArticulo articulo={articulo} />)}
+    </div>
+  </div>
+</Base>

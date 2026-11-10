@@ -1,0 +1,18 @@
+---
+interface Props {
+  etiquetas: readonly string[];
+}
+const { etiquetas } = Astro.props;
+---
+
+<ul class="list-inline mb-0 d-flex flex-wrap gap-2">
+  {
+    etiquetas.map((e) => (
+      <li>
+        <a class="etiqueta" href={`/articulos/tag/${e}`}>
+          {e}
+        </a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,31 @@
+---
+import Base from '../../../layouts/Base.astro';
+import TarjetaArticulo from '../../../components/TarjetaArticulo.astro';
+import { obtenerPublicados, type Articulo } from '../../../lib/articulos';
+import { etiquetasConArticulos } from '../../../lib/publicacion';
+
+export async function getStaticPaths() {
+  const publicados = await obtenerPublicados();
+  return etiquetasConArticulos(publicados).map((tag) => ({
+    params: { tag },
+    props: { articulos: publicados.filter((a) => (a.data.etiquetas as readonly string[]).includes(tag)) },
+  }));
+}
+
+const { tag } = Astro.params;
+const { articulos } = Astro.props as { articulos: Articulo[] };
+---
+
+<Base titulo={`Artículos sobre ${tag}`}>
+  <section class="cabecera">
+    <div class="marco">
+      <h1>Artículos sobre {tag}</h1>
+      <p><a class="enlace" href="/articulos">Ver todos los artículos</a></p>
+    </div>
+  </section>
+  <div class="marco">
+    <div class="lectura pb-5 mb-4">
+      {articulos.map((articulo) => <TarjetaArticulo articulo={articulo} />)}
+    </div>
+  </div>
+</Base>

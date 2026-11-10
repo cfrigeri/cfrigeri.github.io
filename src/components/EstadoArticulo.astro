@@ -1,0 +1,18 @@
+---
+import { estadoArticulo } from '../lib/publicacion';
+import { formatearFecha } from '../lib/fechas';
+import type { Articulo } from '../lib/articulos';
+
+interface Props {
+  articulo: Articulo;
+}
+const { articulo } = Astro.props;
+const estado = estadoArticulo(articulo, new Date());
+---
+
+{estado === 'borrador' && <span class="badge text-bg-warning ms-2">Borrador · no se publica</span>}
+{
+  estado === 'programado' && (
+    <span class="badge text-bg-info ms-2">Programado · {formatearFecha(articulo.data.fecha)}</span>
+  )
+}

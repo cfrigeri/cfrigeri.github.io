@@ -1,0 +1,43 @@
+---
+import { SITIO } from '../config/sitio';
+
+const enlaces = [
+  { href: '/articulos', texto: 'Artículos' },
+  { href: '/#casos', texto: 'Lo que resolví' },
+  { href: '/sobre-mi', texto: 'Sobre mí' },
+  { href: '/contacto', texto: 'Escribime' },
+];
+
+const ruta = Astro.url.pathname.replace(/\/$/, '') || '/';
+const esActivo = (href: string) => !href.includes('#') && (ruta === href || ruta.startsWith(`${href}/`));
+---
+
+<header class="encabezado">
+  <nav class="navbar navbar-expand-md marco" aria-label="Navegación principal">
+    <a class="navbar-brand" href="/">{SITIO.titulo}<i aria-hidden="true"></i></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menu-principal"
+      aria-controls="menu-principal"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu-principal">
+      <ul class="navbar-nav ms-auto">
+        {
+          enlaces.map(({ href, texto }) => (
+            <li class="nav-item">
+              <a class:list={['nav-link', { active: esActivo(href) }]} href={href} aria-current={esActivo(href) ? 'page' : undefined}>
+                {texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>

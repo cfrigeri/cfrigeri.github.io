@@ -1,0 +1,49 @@
+---
+// Cómo pienso la IA dentro de un sistema: sistema actual, APIs, agente y evaluación con ciclo de mejora.
+// Pensado para ir sobre la banda oscura de la portada.
+---
+
+<div class="diagrama">
+  <svg
+    viewBox="0 0 1060 250"
+    role="img"
+    aria-label="Diagrama: el sistema actual expone APIs, un agente de IA resuelve casos, cada resultado se evalúa y las métricas vuelven a ajustar el agente."
+  >
+    <defs>
+      <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#F6F4EE"></path>
+      </marker>
+      <marker id="flecha-oro" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#D4AE5E"></path>
+      </marker>
+    </defs>
+    <g font-family="'Archivo Variable', Arial, sans-serif">
+      <rect x="10" y="40" width="210" height="120" fill="#0F1E26" stroke="#F6F4EE" stroke-width="2"></rect>
+      <text x="30" y="82" font-size="20" font-weight="800" fill="#F6F4EE">Sistema actual</text>
+      <text x="30" y="110" font-size="15" fill="#B8C4CA">Core, ERP o código</text>
+      <text x="30" y="132" font-size="15" fill="#B8C4CA">heredado</text>
+
+      <rect x="290" y="40" width="210" height="120" fill="#163A4A" stroke="#F6F4EE" stroke-width="2"></rect>
+      <text x="310" y="82" font-size="20" font-weight="800" fill="#F6F4EE">Capa de APIs</text>
+      <text x="310" y="110" font-size="15" fill="#B8C4CA">Contratos, seguridad</text>
+      <text x="310" y="132" font-size="15" fill="#B8C4CA">y trazabilidad</text>
+
+      <rect x="576" y="46" width="210" height="120" fill="#F6F4EE"></rect>
+      <rect x="570" y="40" width="210" height="120" fill="#D4AE5E" stroke="#F6F4EE" stroke-width="2"></rect>
+      <text x="590" y="82" font-size="20" font-weight="800" fill="#0F1E26">Agente de IA</text>
+      <text x="590" y="110" font-size="15" fill="#0F1E26">Triaje, datos</text>
+      <text x="590" y="132" font-size="15" fill="#0F1E26">y backlog</text>
+
+      <rect x="850" y="40" width="200" height="120" fill="none" stroke="#D4AE5E" stroke-width="2" stroke-dasharray="6 5"></rect>
+      <text x="870" y="82" font-size="20" font-weight="800" fill="#F6F4EE">Evaluación</text>
+      <text x="870" y="110" font-size="15" fill="#B8C4CA">Precisión, costo</text>
+      <text x="870" y="132" font-size="15" fill="#B8C4CA">y latencia</text>
+
+      <line x1="222" y1="100" x2="286" y2="100" stroke="#F6F4EE" stroke-width="2.5" marker-end="url(#flecha)"></line>
+      <line x1="502" y1="100" x2="566" y2="100" stroke="#F6F4EE" stroke-width="2.5" marker-end="url(#flecha)"></line>
+      <line x1="788" y1="100" x2="846" y2="100" stroke="#F6F4EE" stroke-width="2.5" marker-end="url(#flecha)"></line>
+      <path d="M950 162 V215 H675 V172" fill="none" stroke="#D4AE5E" stroke-width="2.5" marker-end="url(#flecha-oro)"></path>
+      <text x="700" y="238" font-size="15" font-weight="700" fill="#D4AE5E">Las métricas ajustan el agente</text>
+    </g>
+  </svg>
+</div>

@@ -1,0 +1,59 @@
+name: Publicar sitio
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Todos los días a las 06:00 de Buenos Aires: publica los artículos programados.
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run test:dist
+
+  publicar:
+    needs: verificar
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_FORMSPREE_ID: ${{ vars.PUBLIC_FORMSPREE_ID }}
+      PUBLIC_GOATCOUNTER_CODIGO: ${{ vars.PUBLIC_GOATCOUNTER_CODIGO }}
+      PUBLIC_GOOGLE_VERIFICACION: ${{ vars.PUBLIC_GOOGLE_VERIFICACION }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - name: Verificar variables del repositorio
+        run: node scripts/verificar-variables.mjs
+      - run: npm run build
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+      - id: deploy
+        uses: actions/deploy-pages@v5
