@@ -227,3 +227,10 @@ h1, h2, h3 { text-wrap: balance; }
   .historia li { grid-template-columns: 1fr; gap: 4px; }
   .bio { flex-direction: column; align-items: flex-start; }
 }
+
+// Tablas dentro de los artículos.
+.contenido table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 1rem; background: $blanco; border: 2px solid $tinta; box-shadow: 6px 6px 0 $suave; }
+.contenido th { background: $tinta; color: $papel; font-family: $f-display; font-weight: 700; text-align: left; padding: 12px 14px; }
+.contenido td { padding: 12px 14px; border-top: 1px solid $suave; vertical-align: top; line-height: 1.5; }
+.contenido td:first-child { font-weight: 600; width: 34%; }
+@include media-breakpoint-down(sm) { .contenido table { font-size: .92rem; } }

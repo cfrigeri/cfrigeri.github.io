@@ -33,6 +33,9 @@ El texto del artículo en Markdown.
 
 3. Revisalo con `npm run dev` y después hacé commit y push a `main`.
 
+**Portada:** para generar una portada con la identidad del sitio, usá
+`node scripts/generar-portada.mjs <carpeta> "Etiqueta" "Línea 1" "Línea 2"` y agregá `imagen: ./portada.png` al frontmatter.
+
 **Etiquetas permitidas:** `apis`, `open-banking`, `ia`, `arquitectura`, `banca-digital`, `liderazgo`, `desarrollo`. Para agregar una nueva, editá `ETIQUETAS` en `src/content/esquema.ts`. Una etiqueta que no está en la lista hace fallar el build, a propósito.
 
 **Programar artículos:** si la `fecha` es futura, el artículo queda en el repo pero no se muestra. La publicación automática corre todos los días a las 06:00 de Buenos Aires, así que el artículo aparece solo el día indicado. Podés dejar escritos los artículos de todo el mes.
