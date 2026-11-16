@@ -111,10 +111,6 @@ h1, h2, h3 { text-wrap: balance; }
 }
 .polaroid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%; border: 2px solid $tinta; }
 .polaroid figcaption { padding: 12px 2px 14px; font-size: .92rem; font-style: italic; color: $gris; }
-.sello {
-  position: absolute; top: -18px; left: -22px; z-index: 1; transform: rotate(-6deg);
-  background: $oro; border: 2px solid $tinta; padding: 8px 14px; font-weight: 600; font-size: .95rem;
-}
 
 .temas { border-top: 2px solid $tinta; border-bottom: 2px solid $tinta; }
 .temas .marco { display: grid; grid-template-columns: auto repeat(4, 1fr); }
@@ -221,7 +217,6 @@ h1, h2, h3 { text-wrap: balance; }
   .temas .marco > * { border-left: 0; border-top: 2px solid $tinta; padding-left: 0; }
   .temas .marco > :first-child { grid-column: 1 / -1; border-top: 0; padding: 18px 0 6px; }
   .polaroid { margin: 32px auto 0; width: calc(100% - 28px); }
-  .sello { left: -10px; top: -20px; }
 }
 @include media-breakpoint-down(sm) {
   .historia li { grid-template-columns: 1fr; gap: 4px; }
