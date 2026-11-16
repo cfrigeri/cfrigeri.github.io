@@ -4,10 +4,10 @@ import sharp from 'sharp';
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <rect width="1200" height="630" fill="#F6F4EE"/>
   <rect x="40" y="40" width="1120" height="550" fill="#FFFFFF" stroke="#0F1E26" stroke-width="4"/>
-  <text x="100" y="230" font-family="DejaVu Sans, Arial, sans-serif" font-size="66" font-weight="700" fill="#0F1E26">Pongo la IA a trabajar</text>
-  <text x="100" y="310" font-family="DejaVu Sans, Arial, sans-serif" font-size="66" font-weight="700" fill="#0F1E26">en sistemas reales.</text>
-  <rect x="96" y="352" width="560" height="34" fill="#D4AE5E"/>
-  <text x="100" y="380" font-family="DejaVu Sans, Arial, sans-serif" font-size="44" font-weight="700" fill="#0F1E26">Y te cuento cómo.</text>
+  <text x="100" y="230" font-family="DejaVu Sans, Arial, sans-serif" font-size="60" font-weight="700" fill="#0F1E26">Ideas y experiencias para</text>
+  <text x="100" y="310" font-family="DejaVu Sans, Arial, sans-serif" font-size="60" font-weight="700" fill="#0F1E26">llevar la IA a</text>
+  <rect x="96" y="352" width="470" height="34" fill="#D4AE5E"/>
+  <text x="100" y="380" font-family="DejaVu Sans, Arial, sans-serif" font-size="60" font-weight="700" fill="#0F1E26">sistemas reales.</text>
   <text x="100" y="510" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" fill="#55636B">Claudio Frigeri</text>
 </svg>`;
 

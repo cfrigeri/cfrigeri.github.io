@@ -241,3 +241,10 @@ Reemplaza la dirección visual y de tono de la sección 14 (se mantiene la regla
 - **Visual:** fondo papel `#F6F4EE`, tinta `#0F1E26`, azul petróleo `#163A4A`, dorado `#D4AE5E`; bordes de 2px y sombras duras; foto en formato polaroid.
 - **Portada:** titular "Pongo la IA a trabajar en sistemas reales. Y te cuento cómo.", fila de temas, "Problemas que me tocó destrabar" (tres casos, cada uno con una pregunta que invita a escribir), banda oscura "Cómo pienso la IA dentro de un sistema" con el diagrama y tres ideas, "Lo que voy escribiendo" y un bloque final "¿Estás peleando con algo parecido?".
 - **Menú:** Artículos, Lo que resolví, Sobre mí, Escribime.
+
+## 16. Ajustes de portada (2026-11-16)
+
+- Titular: "Ideas y experiencias para llevar la IA a sistemas reales." La bajada presenta a Claudio.
+- Se elimina la sección de casos resueltos y el sello de la foto.
+- Menú: Artículos, Sobre mí, Escribime.
+- Orden de la portada: hero, temas, artículos, "Cómo pienso la IA dentro de un sistema" y cierre con invitación a escribir.

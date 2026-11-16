@@ -11,31 +11,6 @@ const [destacado, ...otros] = (await obtenerPublicados()).slice(0, 4);
 
 const temas = ['Integraciones y APIs', 'Agentes de IA', 'Arquitectura y legacy', 'Flujos que se traban'];
 
-// Situaciones reales, contadas sin nombres de empresas. Cada una termina en una invitación a conversar.
-const casos = [
-  {
-    titulo: 'Un homebanking que nadie se animaba a tocar',
-    problema: 'Una plataforma crítica sobre tecnología legacy, que los clientes usan todos los días.',
-    solucion: 'Migrarla completa a una arquitectura cloud, por etapas.',
-    pregunta: '¿Tenés un sistema así?',
-    accion: 'Contame cómo es',
-  },
-  {
-    titulo: 'Abrir el banco a terceros sin perder el control',
-    problema: 'Importantes actores del ecosistema fintech necesitaban integrarse, y cada error se mide en dinero.',
-    solucion: 'APIs con contratos claros y trazabilidad, que hoy procesan millones de transacciones.',
-    pregunta: '¿Estás por integrar a un socio?',
-    accion: 'Pensémoslo juntos',
-  },
-  {
-    titulo: 'Equipos que tardaban demasiado en llegar a producción',
-    problema: 'Cada proyecto arrancaba de cero y la calidad dependía de quién lo hiciera.',
-    solucion: 'Un framework interno de desarrollo que acortó los tiempos y ordenó el código.',
-    pregunta: '¿A tu equipo le pasa algo parecido?',
-    accion: 'Escribime',
-  },
-];
-
 const ideas = [
   {
     titulo: 'Empezar por el cuello de botella',
@@ -57,10 +32,10 @@ const portadaDestacado = destacado?.data.imagen
   <section class="hero">
     <div class="marco hero-grid">
       <div>
-        <h1>Pongo la IA a trabajar en sistemas reales. Y te cuento <span class="resaltado">cómo.</span></h1>
+        <h1>Ideas y experiencias para llevar la IA a <span class="resaltado">sistemas reales.</span></h1>
         <p>
-          Pasé <strong>13 años en banca digital</strong>, donde un error cuesta caro. Acá escribo sobre integraciones, agentes
-          de IA y arquitectura: lo que funciona, lo que no y por qué.
+          Soy Claudio Frigeri. Pasé <strong>13 años en banca digital</strong>, donde un error cuesta caro. Acá escribo sobre
+          integraciones, agentes de IA y arquitectura: lo que funciona, lo que no y por qué.
         </p>
         <div class="acciones">
           <a class="btn" href="/articulos">Leer los artículos</a>
@@ -86,56 +61,6 @@ const portadaDestacado = destacado?.data.imagen
     <div class="marco">
       <span>De lo que suelo hablar</span>
       {temas.map((t) => <b>{t}</b>)}
-    </div>
-  </section>
-
-  <section class="seccion" id="casos" aria-labelledby="titulo-casos">
-    <div class="marco">
-      <div class="seccion-cabeza">
-        <h2 id="titulo-casos">Problemas que me tocó destrabar</h2>
-        <p>Tres situaciones reales, contadas sin nombres. Si alguna te suena, probablemente tengamos de qué hablar.</p>
-      </div>
-      <div class="casos">
-        {
-          casos.map((c) => (
-            <article class="caso">
-              <h3>{c.titulo}</h3>
-              <dl>
-                <dt>El problema</dt>
-                <dd>{c.problema}</dd>
-                <dt>Lo que hicimos</dt>
-                <dd>{c.solucion}</dd>
-              </dl>
-              <p class="pregunta">
-                {c.pregunta}{' '}
-                <a class="enlace" href="/contacto">
-                  {c.accion}
-                </a>
-              </p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="seccion oscura" id="como-pienso" aria-labelledby="titulo-como-pienso">
-    <div class="marco">
-      <div class="seccion-cabeza">
-        <h2 id="titulo-como-pienso">Cómo pienso la IA dentro de un sistema</h2>
-        <p>La IA no reemplaza lo que ya funciona. Se conecta por APIs, resuelve una parte concreta y cada resultado se mide.</p>
-      </div>
-      <DiagramaMetodo />
-      <ul class="ideas">
-        {
-          ideas.map(({ titulo, texto }) => (
-            <li>
-              <b>{titulo}</b>
-              <span>{texto}</span>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </section>
 
@@ -196,6 +121,26 @@ const portadaDestacado = destacado?.data.imagen
           <p class="fs-5">Pronto vas a encontrar acá los primeros artículos.</p>
         )
       }
+    </div>
+  </section>
+
+  <section class="seccion oscura" id="como-pienso" aria-labelledby="titulo-como-pienso">
+    <div class="marco">
+      <div class="seccion-cabeza">
+        <h2 id="titulo-como-pienso">Cómo pienso la IA dentro de un sistema</h2>
+        <p>La IA no reemplaza lo que ya funciona. Se conecta por APIs, resuelve una parte concreta y cada resultado se mide.</p>
+      </div>
+      <DiagramaMetodo />
+      <ul class="ideas">
+        {
+          ideas.map(({ titulo, texto }) => (
+            <li>
+              <b>{titulo}</b>
+              <span>{texto}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 

@@ -98,7 +98,7 @@ h1, h2, h3 { text-wrap: balance; }
 // ---------- Portada ----------
 .hero { padding: clamp(44px, 7vw, 96px) 0 clamp(48px, 7vw, 88px); }
 .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
-.hero h1 { font-stretch: 108%; font-size: clamp(2.7rem, 6.6vw, 5.4rem); line-height: 1; letter-spacing: -.02em; margin: 0; }
+.hero h1 { font-stretch: 106%; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1.02; letter-spacing: -.02em; margin: 0; }
 .resaltado { background: linear-gradient(transparent 58%, $oro 58%, $oro 92%, transparent 92%); padding: 0 .06em; }
 .hero p { font-size: clamp(1.1rem, 1.5vw, 1.28rem); line-height: 1.6; color: $gris; max-width: 46ch; margin: 28px 0 34px; }
 .hero p strong { color: $tinta; font-weight: 600; }
@@ -122,15 +122,6 @@ h1, h2, h3 { text-wrap: balance; }
 .seccion-cabeza { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(32px, 5vw, 52px); }
 .seccion-cabeza h2, .titulo-grande { font-stretch: 108%; font-size: clamp(2.1rem, 4.4vw, 3.5rem); line-height: 1.02; letter-spacing: -.015em; max-width: 18ch; margin: 0; }
 .seccion-cabeza p { color: $gris; max-width: 44ch; line-height: 1.55; margin: 0; }
-
-.casos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.caso { border: 2px solid $tinta; background: $blanco; padding: clamp(22px, 2.6vw, 32px); display: grid; gap: 14px; align-content: start; box-shadow: 6px 6px 0 $tinta; }
-.caso h3 { font-stretch: 104%; font-size: clamp(1.35rem, 2vw, 1.65rem); line-height: 1.12; margin: 0; }
-.caso dl { margin: 0; display: grid; gap: 10px; }
-.caso dt { font-weight: 600; font-size: .92rem; color: $petroleo; }
-.caso dd { margin: 0; line-height: 1.55; color: #33424A; }
-.caso .pregunta { margin: 6px 0 0; padding-top: 14px; border-top: 2px dashed $suave; font-style: italic; color: $gris; }
-.caso .pregunta a { font-style: normal; }
 
 .oscura { background: $tinta; color: $papel; }
 .oscura .seccion-cabeza h2 { color: $papel; }
@@ -212,7 +203,7 @@ h1, h2, h3 { text-wrap: balance; }
 
 @include media-breakpoint-down(lg) {
   .hero-grid, .escritos, .invitacion, .dos-columnas { grid-template-columns: 1fr; }
-  .casos, .ideas { grid-template-columns: 1fr; }
+  .ideas { grid-template-columns: 1fr; }
   .temas .marco { grid-template-columns: 1fr 1fr; }
   .temas .marco > * { border-left: 0; border-top: 2px solid $tinta; padding-left: 0; }
   .temas .marco > :first-child { grid-column: 1 / -1; border-top: 0; padding: 18px 0 6px; }
