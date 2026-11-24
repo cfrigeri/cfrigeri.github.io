@@ -1,9 +1,10 @@
 ---
 titulo: "Tu agente de IA necesita un lugar en el organigrama"
 resumen: "Rol, responsable, permisos, período de prueba, evaluación de desempeño y baja: cómo gestionar a un agente de IA con las mismas preguntas que te harías con alguien nuevo en el equipo."
-fecha: 2026-11-26
+fecha: 2026-11-28
 etiquetas: [ia, liderazgo]
 imagen: ./portada.png
+borrador: true
 ---
 
 En las dos entregas anteriores de esta serie hablé de [principios](/articulos/gobernar-agentes-como-un-banco) y de [arquitectura](/articulos/cuatro-capas-de-control-para-agentes). Pero hay una pregunta que ninguna capa técnica responde, y que aparece siempre en el peor momento:

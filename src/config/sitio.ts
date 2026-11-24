@@ -6,12 +6,12 @@ export const SITIO = {
   titulo: 'Claudio Frigeri',
   lema: 'IA, integraciones y arquitectura en sistemas reales',
   descripcion:
-    'Claudio Frigeri, consultor técnico independiente. Integro la IA en sistemas de software de forma estructurada, evaluable y confiable.',
+    'Claudio Frigeri, consultor. Integro la IA en sistemas de software de forma estructurada, evaluable y confiable.',
   autor: {
     nombre: 'Claudio Frigeri',
-    rol: 'Consultor técnico independiente',
+    rol: 'Consultor',
     bioCorta:
-      'Consultor técnico independiente con 13 años de experiencia en banca digital. Ayudo a empresas de cualquier industria a integrar la IA en sus sistemas de forma estructurada, evaluable y confiable.',
+      'Consultor con experiencia en banca digital. Te ayudo a integrar la IA en sistemas de forma estructurada, evaluable y confiable.',
   },
   enlaces: {
     email: 'cfrigeri@gmail.com',

@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -31,16 +32,13 @@ jobs:
       - run: npm test
       - run: npm run test:dist
 
-  publicar:
+  construir:
     needs: verificar
     runs-on: ubuntu-latest
     env:
       PUBLIC_FORMSPREE_ID: ${{ vars.PUBLIC_FORMSPREE_ID }}
       PUBLIC_GOATCOUNTER_CODIGO: ${{ vars.PUBLIC_GOATCOUNTER_CODIGO }}
       PUBLIC_GOOGLE_VERIFICACION: ${{ vars.PUBLIC_GOOGLE_VERIFICACION }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -55,5 +53,15 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+
+  # Publicar va en un job aparte: si sube y publica en el mismo job, deploy-pages
+  # a veces no encuentra el artefacto recién subido (actions/deploy-pages#451).
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
         uses: actions/deploy-pages@v5

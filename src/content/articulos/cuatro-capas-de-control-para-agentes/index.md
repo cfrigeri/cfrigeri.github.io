@@ -1,9 +1,10 @@
 ---
 titulo: "Cuatro capas de control antes de dejar a un agente tocar producción"
 resumen: "Política, ejecución, evaluación y auditoría: una arquitectura concreta para que un agente de IA pueda actuar sobre tus sistemas sin que el riesgo dependa de lo que diga el prompt."
-fecha: 2026-11-19
+fecha: 2026-11-25
 etiquetas: [ia, arquitectura, apis]
 imagen: ./portada.png
+borrador: true
 ---
 
 La semana pasada repasé [seis principios que la banca usa hace décadas](/articulos/gobernar-agentes-como-un-banco) para controlar a quien opera dinero, y cómo se traducen al mundo de los agentes de IA. Esta vez bajo esos principios a una arquitectura.
