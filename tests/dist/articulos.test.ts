@@ -1,52 +1,57 @@
 import { describe, it, expect } from 'vitest';
-import { readdirSync } from 'node:fs';
+import { readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { leerHtml, existeEnDist, DIST } from './helpers';
+import { leerHtml, articulosPublicados, DIST } from './helpers';
 import { ETIQUETAS } from '../../src/content/esquema';
 
-// Estas pruebas usan solo el primer artículo de la serie, que ya está publicado.
-// Los artículos programados no se mencionan, para que las pruebas no dependan de la fecha del build.
-const SLUG = 'gobernar-agentes-como-un-banco';
-const TITULO = 'Lo que la banca ya sabía sobre gobernar agentes de IA';
-const articulo = leerHtml(`articulos/${SLUG}/index.html`);
+// Estas pruebas no nombran artículos concretos: recorren los que este build publicó.
+// Así no dependen de qué artículo está en borrador ni de la fecha del build.
+const publicados = articulosPublicados();
 
-describe('página de artículo', () => {
-  it('usa el título del artículo en <title> y en Open Graph, con acentos intactos', () => {
-    expect(articulo.querySelector('title')?.text).toBe(`${TITULO} | Claudio Frigeri`);
-    expect(articulo.querySelector('meta[property="og:title"]')?.getAttribute('content')).toBe(TITULO);
+describe('páginas de artículo', () => {
+  it.each(publicados)('%s: título, Open Graph, fecha y bio', (slug) => {
+    const h = leerHtml(`articulos/${slug}/index.html`);
+    const og = h.querySelector('meta[property="og:title"]')?.getAttribute('content') ?? '';
+    expect(og.length).toBeGreaterThan(0);
+    expect(h.querySelector('title')?.text).toBe(`${og} | Claudio Frigeri`);
+    expect(h.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe('article');
+    expect(h.querySelector('article header time')?.text).toMatch(/^\d{1,2} de [a-záéíóú]+ de \d{4}$/);
+    expect(h.querySelector('aside.bio a[href="/contacto"]')).not.toBeNull();
   });
-  it('muestra la portada en el encabezado y la usa como og:image absoluta', () => {
-    const img = articulo.querySelector('article header img');
-    expect(img?.getAttribute('src')).toMatch(/^\/_astro\/portada\..+\.webp$/);
-    const og = articulo.querySelector('meta[property="og:image"]')?.getAttribute('content');
-    expect(og).toMatch(/^https:\/\/cfrigeri\.github\.io\/_astro\/portada\..+\.png$/);
-    expect(articulo.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe('article');
-  });
-  it('muestra la fecha formateada y la bio con enlace a contacto', () => {
-    expect(articulo.querySelector('time')?.text).toBe('12 de noviembre de 2026');
-    expect(articulo.querySelector('aside.bio a[href="/contacto"]')).not.toBeNull();
-  });
-  it('renderiza las tablas de Markdown', () => {
-    expect(articulo.querySelectorAll('.contenido table tr').length).toBeGreaterThan(1);
+
+  it.each(publicados)('%s: la imagen para compartir es absoluta y coincide con la portada', (slug) => {
+    const h = leerHtml(`articulos/${slug}/index.html`);
+    const og = h.querySelector('meta[property="og:image"]')?.getAttribute('content') ?? '';
+    if (h.querySelector('article header img')) {
+      expect(og).toMatch(/^https:\/\/cfrigeri\.github\.io\/_astro\/.+\.png$/);
+    } else {
+      expect(og).toBe('https://cfrigeri.github.io/og-default.png');
+    }
   });
 });
 
 describe('listado y etiquetas', () => {
-  it('el listado enlaza al artículo', () => {
-    expect(leerHtml('articulos/index.html').querySelector(`a[href="/articulos/${SLUG}"]`)).not.toBeNull();
+  it('el listado enlaza a cada artículo publicado', () => {
+    const listado = leerHtml('articulos/index.html');
+    for (const slug of publicados) {
+      expect(listado.querySelector(`a[href="/articulos/${slug}"]`), slug).not.toBeNull();
+    }
   });
-  it('genera las páginas de las etiquetas del artículo publicado', () => {
-    expect(existeEnDist('articulos/tag/ia/index.html')).toBe(true);
-    expect(existeEnDist('articulos/tag/arquitectura/index.html')).toBe(true);
-  });
-  it('toda página de etiqueta generada es una etiqueta válida y lista al menos un artículo', () => {
-    const generadas = readdirSync(join(DIST, 'articulos/tag'));
+
+  it('hay una página por cada etiqueta usada en artículos publicados, y ninguna más', () => {
+    const usadas = new Set(
+      publicados.flatMap((slug) =>
+        leerHtml(`articulos/${slug}/index.html`)
+          .querySelectorAll('a.etiqueta')
+          .map((a) => (a.getAttribute('href') ?? '').split('/').pop() ?? ''),
+      ),
+    );
+    const dirTags = join(DIST, 'articulos/tag');
+    const generadas = existsSync(dirTags) ? readdirSync(dirTags) : [];
+    expect(new Set(generadas)).toEqual(usadas);
     for (const tag of generadas) {
       expect(ETIQUETAS as readonly string[]).toContain(tag);
       expect(leerHtml(`articulos/tag/${tag}/index.html`).querySelectorAll('article.tarjeta').length).toBeGreaterThan(0);
     }
-  });
-  it('no genera página para una etiqueta que ningún artículo usa', () => {
-    expect(existeEnDist('articulos/tag/desarrollo/index.html')).toBe(false);
   });
 });

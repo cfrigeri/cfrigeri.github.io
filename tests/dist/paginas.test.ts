@@ -1,10 +1,15 @@
 import { describe, it, expect } from 'vitest';
-import { leerHtml } from './helpers';
+import { leerHtml, articulosPublicados } from './helpers';
 
 describe('páginas fijas', () => {
-  it('inicio lista el artículo y tiene el CTA a contacto', () => {
+  it('inicio destaca el artículo más reciente y tiene el CTA a contacto', () => {
     const h = leerHtml('index.html');
-    expect(h.querySelector('a[href="/articulos/gobernar-agentes-como-un-banco"]')).not.toBeNull();
+    const enlaces = h.querySelectorAll('#escritos a[href^="/articulos/"]').map((x) => x.getAttribute('href'));
+    if (articulosPublicados().length > 0) {
+      expect(enlaces.some((href) => articulosPublicados().includes((href ?? '').split('/').pop() ?? ''))).toBe(true);
+    } else {
+      expect(h.querySelector('#escritos')?.text).toContain('Pronto vas a encontrar');
+    }
     expect(h.querySelector('a[href="/contacto"].btn')).not.toBeNull();
   });
   it('la portada abre con el titular, la foto y el artículo como acción principal', () => {

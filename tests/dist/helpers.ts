@@ -36,3 +36,12 @@ export function enlacesRotos(): string[] {
   }
   return rotos;
 }
+
+/** Slugs de los artículos publicados en este build (carpetas de dist/articulos, sin las etiquetas). */
+export function articulosPublicados(): string[] {
+  const dir = join(DIST, 'articulos');
+  return readdirSync(dir, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && e.name !== 'tag')
+    .map((e) => e.name)
+    .sort();
+}
