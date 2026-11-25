@@ -1,10 +1,10 @@
 ---
 titulo: "Gobernar agentes de IA"
 resumen: "Doble firma, límites por operación, segregación de funciones y auditoría: seis principios traducidos en la arquitectura de un agente."
-fecha: 2026-11-24
+fecha: 2026-11-25
 etiquetas: [ia, arquitectura]
 
-borrador: true
+borrador: false
 ---
 
 Uns entidad financiera deja que miles de personas muevan dinero todos los días. Cajeros, operadores, analistas, sistemas automáticos. Y aun así, lo normal es que el dinero termine donde tiene que terminar.
