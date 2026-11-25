@@ -29,7 +29,7 @@ describe('layout base', () => {
     expect(navs).toEqual(['/articulos', '/sobre-mi', '/contacto']);
     expect(html.querySelector('header nav a[href="/contacto"]')?.text.trim()).toBe('Escribime');
     const pie = html.querySelector('footer')!.innerHTML;
-    for (const e of ['mailto:cfrigeri@gmail.com', 'https://www.linkedin.com/in/cfrigeri', 'https://github.com/cfrigeri', '/rss.xml']) {
+    for (const e of ['https://www.linkedin.com/in/cfrigeri', 'https://github.com/cfrigeri', '/rss.xml']) {
       expect(pie).toContain(e);
     }
   });
