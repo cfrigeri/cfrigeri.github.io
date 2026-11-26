@@ -2,6 +2,7 @@
 import Etiquetas from './Etiquetas.astro';
 import EstadoArticulo from './EstadoArticulo.astro';
 import { formatearFecha } from '../lib/fechas';
+import { lecturaDeArticulo } from '../lib/lectura';
 import type { Articulo } from '../lib/articulos';
 
 interface Props {
@@ -16,6 +17,7 @@ const Titulo = nivel;
 
 <article class="tarjeta">
   <time datetime={fecha.toISOString()}>{formatearFecha(fecha)}</time>
+  <span class="lectura-min">{lecturaDeArticulo(articulo)}</span>
   <EstadoArticulo articulo={articulo} />
   <Titulo><a href={`/articulos/${articulo.id}`}>{titulo}</a></Titulo>
   <p>{resumen}</p>

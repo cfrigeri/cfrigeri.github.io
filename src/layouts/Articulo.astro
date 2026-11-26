@@ -5,6 +5,7 @@ import Etiquetas from '../components/Etiquetas.astro';
 import BioAutor from '../components/BioAutor.astro';
 import EstadoArticulo from '../components/EstadoArticulo.astro';
 import { formatearFecha } from '../lib/fechas';
+import { lecturaDeArticulo } from '../lib/lectura';
 import type { Articulo } from '../lib/articulos';
 
 interface Props {
@@ -19,6 +20,7 @@ const imagenOg = imagen ? (await getImage({ src: imagen, width: 1200, format: 'p
   <article class="marco">
     <header class="articulo-cabecera lectura">
       <time datetime={fecha.toISOString()}>{formatearFecha(fecha)}</time>
+      <span class="lectura-min">{lecturaDeArticulo(articulo)}</span>
       <EstadoArticulo articulo={articulo} />
       <h1>{titulo}</h1>
       <Etiquetas etiquetas={etiquetas} />

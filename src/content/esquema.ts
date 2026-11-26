@@ -9,6 +9,8 @@ export const ETIQUETAS = [
   'banca-digital',
   'liderazgo',
   'desarrollo',
+  "gobernanza", 
+  "automatizacion",
 ] as const;
 
 export type Etiqueta = (typeof ETIQUETAS)[number];

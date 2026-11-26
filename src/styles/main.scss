@@ -220,3 +220,8 @@ h1, h2, h3 { text-wrap: balance; }
 .contenido td { padding: 12px 14px; border-top: 1px solid $suave; vertical-align: top; line-height: 1.5; }
 .contenido td:first-child { font-weight: 600; width: 34%; }
 @include media-breakpoint-down(sm) { .contenido table { font-size: .92rem; } }
+
+// Tiempo de lectura, a continuación de la fecha.
+.lectura-min { color: $gris; font-size: .92rem; }
+.lectura-min::before { content: '·'; margin: 0 .5em; }
+.articulo-cabecera .lectura-min { font-size: inherit; }

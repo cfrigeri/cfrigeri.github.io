@@ -19,6 +19,11 @@ describe('páginas de artículo', () => {
     expect(h.querySelector('aside.bio a[href="/contacto"]')).not.toBeNull();
   });
 
+  it.each(publicados)('%s: muestra el tiempo de lectura junto a la fecha', (slug) => {
+    const h = leerHtml(`articulos/${slug}/index.html`);
+    expect(h.querySelector('article header .lectura-min')?.text.trim()).toMatch(/^\d+ min de lectura$/);
+  });
+
   it.each(publicados)('%s: la imagen para compartir es absoluta y coincide con la portada', (slug) => {
     const h = leerHtml(`articulos/${slug}/index.html`);
     const og = h.querySelector('meta[property="og:image"]')?.getAttribute('content') ?? '';
@@ -36,6 +41,12 @@ describe('listado y etiquetas', () => {
     for (const slug of publicados) {
       expect(listado.querySelector(`a[href="/articulos/${slug}"]`), slug).not.toBeNull();
     }
+  });
+
+  it('cada tarjeta del listado muestra el tiempo de lectura', () => {
+    const tarjetas = leerHtml('articulos/index.html').querySelectorAll('article.tarjeta');
+    expect(tarjetas.length).toBe(publicados.length);
+    for (const t of tarjetas) expect(t.querySelector('.lectura-min')?.text.trim()).toMatch(/^\d+ min de lectura$/);
   });
 
   it('hay una página por cada etiqueta usada en artículos publicados, y ninguna más', () => {

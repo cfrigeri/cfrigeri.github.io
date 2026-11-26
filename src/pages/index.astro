@@ -5,6 +5,7 @@ import TarjetaArticulo from '../components/TarjetaArticulo.astro';
 import DiagramaMetodo from '../components/DiagramaMetodo.astro';
 import { obtenerPublicados } from '../lib/articulos';
 import { formatearFecha } from '../lib/fechas';
+import { lecturaDeArticulo } from '../lib/lectura';
 import foto from '../assets/claudio.jpg';
 
 const [destacado, ...otros] = (await obtenerPublicados()).slice(0, 4);
@@ -79,7 +80,10 @@ const portadaDestacado = destacado?.data.imagen
                 </a>
               )}
               <div class="nota-cuerpo">
-                <time datetime={destacado.data.fecha.toISOString()}>{formatearFecha(destacado.data.fecha)}</time>
+                <div>
+                  <time datetime={destacado.data.fecha.toISOString()}>{formatearFecha(destacado.data.fecha)}</time>
+                  <span class="lectura-min">{lecturaDeArticulo(destacado)}</span>
+                </div>
                 <h3>
                   <a href={`/articulos/${destacado.id}`}>{destacado.data.titulo}</a>
                 </h3>
