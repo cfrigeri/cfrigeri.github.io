@@ -25,7 +25,7 @@ describe('esquema de artículo', () => {
     expect(esquema.safeParse(sinFecha).success).toBe(false);
   });
   it('ETIQUETAS coincide con la spec', () => {
-    expect(ETIQUETAS).toEqual(['apis', 'open-banking', 'ia', 'arquitectura', 'banca-digital', 'liderazgo', 'desarrollo']);
+    expect(ETIQUETAS).toEqual(['apis', 'open-banking', 'ia', 'arquitectura', 'banca-digital', 'liderazgo', 'desarrollo', 'gobernanza', 'automatizacion']);
   });
 });
 
